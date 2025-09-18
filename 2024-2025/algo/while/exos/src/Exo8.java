@@ -14,6 +14,7 @@ public class Exo8 {
         // si le suivant est plus petit que le précédent ou que le suivant == -1 => on arrète la boucle...
         // sinon on continue.
         Scanner scan = new Scanner(System.in);
+        System.out.println("La suite comporte au moins deux nombres...");
         System.out.print("Entrez un nombre: ");
 
         int next = scan.nextInt();

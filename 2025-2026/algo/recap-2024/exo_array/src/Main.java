@@ -55,12 +55,10 @@ public class Main {
             }
         }
 
-        // copier le reste de a s'il en reste
         while (i < n1) {
             result[k++] = a[i++];
         }
 
-        // copier le reste de b s'il en reste
         while (j < n2) {
             result[k++] = b[j++];
         }

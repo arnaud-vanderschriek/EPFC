@@ -1,7 +1,6 @@
-import java.util.Arrays;
-import java.util.List;
+package exos_arrays;
+
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

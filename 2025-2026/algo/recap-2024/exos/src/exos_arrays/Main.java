@@ -1,18 +1,16 @@
 package exos_arrays;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    private static Scanner scan = new Scanner(System.in);
+    private static final Scanner scan = new Scanner(System.in);
     public static int min(int[] arr) {
         int min = arr[0];
-        for(int i = 0; i < arr.length; ++i) {
-          if(arr[i] < min) {
-              min = arr[i];
-          }
+        for (int j : arr) {
+            if (j < min) {
+                min = j;
+            }
         }
 
         return min;
@@ -88,7 +86,6 @@ public class Main {
         }
     }
     public static void matrice() {
-        Scanner scan = new Scanner(System.in);
         System.out.print("Quelle largueur ?");
         int largueur = scan.nextInt();
         System.out.print("Quelle longueur ?");
@@ -116,12 +113,12 @@ public class Main {
 
         int[] arr = {1, 3, 5, 7};
         int[] arr2 = {2, 4, 6, 8};
-        //   System.out.println("La plus petite valeur est :" + min(arr));
-        //  System.out.println("Arrays: " + Arrays.toString(arr));
-        //  System.out.println("Le tableau inversé est: " + Arrays.toString(inverser(arr)));
-        //    System.out.println("Glissement vers la droite: " + Arrays.toString(glissementVersLaDroite(arr)));
-       // System.out.println("MergeSorted: " + Arrays.toString(mergeSorted(arr, arr2)));
-        //System.out.println("Concaténation: " + Arrays.toString(concat(arr, arr2)));
+        System.out.println("La plus petite valeur est :" + min(arr));
+        System.out.println("Arrays: " + Arrays.toString(arr));
+        System.out.println("Le tableau inversé est: " + Arrays.toString(inverser(arr)));
+        System.out.println("Glissement vers la droite: " + Arrays.toString(glissementVersLaDroite(arr)));
+        System.out.println("MergeSorted: " + Arrays.toString(mergeSorted(arr, arr2)));
+        System.out.println("Concaténation: " + Arrays.toString(concat(arr, arr2)));
         matrice();
     }
 }

@@ -1,12 +1,13 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-
+    private static Scanner scan = new Scanner(System.in);
     public static int min(int[] arr) {
         int min = arr[0];
         for(int i = 0; i < arr.length; ++i) {
@@ -66,6 +67,38 @@ public class Main {
         return result;
     }
 
+    public static int[][] createMatrice(int largueur, int longueur, Scanner scan ) {
+        int[][] matrice = new int[largueur][longueur];
+        for(int i = 0; i < largueur; ++i) {
+            for(int j = 0; j < longueur; ++j) {
+                System.out.println("Quelle valeur pour (" + i + ", " + j + ") ?");
+                matrice[i][j] = scan.nextInt();
+            }
+        }
+
+        return matrice;
+    }
+
+    public static void afficheMatrice(int[][] matrice, int largueur, int longueur) {
+        for(int i = 0; i < largueur; ++i) {
+            for(int j = 0; j < longueur; ++j) {
+                System.out.print(matrice[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+    public static void matrice() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Quelle largueur ?");
+        int largueur = scan.nextInt();
+        System.out.print("Quelle longueur ?");
+        int longueur = scan.nextInt();
+
+        int[][] matrice = createMatrice(largueur, longueur, scan);
+        afficheMatrice(matrice, largueur, longueur);
+    }
+
     public static int[] concat(int[] arr, int[] arr2) {
         int[] arr3 = new int[arr.length + arr2.length];
 
@@ -88,8 +121,9 @@ public class Main {
         //  System.out.println("Arrays: " + Arrays.toString(arr));
         //  System.out.println("Le tableau inversé est: " + Arrays.toString(inverser(arr)));
         //    System.out.println("Glissement vers la droite: " + Arrays.toString(glissementVersLaDroite(arr)));
-        System.out.println("MergeSorted: " + Arrays.toString(mergeSorted(arr, arr2)));
-        System.out.println("Concaténation: " + Arrays.toString(concat(arr, arr2)));
+       // System.out.println("MergeSorted: " + Arrays.toString(mergeSorted(arr, arr2)));
+        //System.out.println("Concaténation: " + Arrays.toString(concat(arr, arr2)));
+        matrice();
     }
 }
 

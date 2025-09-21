@@ -1,25 +1,38 @@
 package ClassesAndObjects;
 
+import java.time.LocalDate;
+
 public class Person {
     String firstName;
     String lastName;
-    Date dateOfBirth;
+    Date birthDate;
 
     public Person(String firstName, String lastName, int day, int month, int year) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = new Date(day, month, year);
+        this.birthDate = new Date(day, month, year);
     }
 
-    // public String toString() {
-}
-
-/*
     public int getAge() {
-        LocalDate today = LocalDate.now();
-        int day = today.getDayOfMonth();
-        int month = today.getMonthValue();
-        int year = today.getYear();
-    }
-*/
+        LocalDate dateOfDay = getDateOfDate();
+        int year = dateOfDay.getYear();
+        int yearFromP = birthDate.year;
 
+        int age = year - yearFromP;
+        if(dateOfDay.getMonthValue() < birthDate.month ||
+                ( dateOfDay.getDayOfMonth() == birthDate.month &&
+                        dateOfDay.getDayOfMonth() > birthDate.day)) {
+            --age;
+        }
+
+        return age;
+    }
+
+    public static LocalDate getDateOfDate() {
+        return LocalDate.now();
+    }
+
+    public String toString() {
+        return String.format("%s %s est né le %s", lastName, firstName, birthDate);
+    }
+}

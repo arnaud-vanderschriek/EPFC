@@ -3,9 +3,9 @@ package ClassesAndObjects;
 import java.time.LocalDate;
 
 public class Person {
-    String firstName;
-    String lastName;
-    Date birthDate;
+    public String firstName;
+    public String lastName;
+    public Date birthDate;
 
     public Person(String firstName, String lastName, int day, int month, int year) {
         this.firstName = firstName;
@@ -13,15 +13,19 @@ public class Person {
         this.birthDate = new Date(day, month, year);
     }
 
+    public static boolean isBirthdatePassed(LocalDate dateOfDay, Date birthDate) {
+        return dateOfDay.getMonthValue() < birthDate.getMonth() || (
+                dateOfDay.getDayOfMonth() == birthDate.getMonth() &&
+                        dateOfDay.getDayOfMonth() > birthDate.getDay());
+    }
+
     public int getAge() {
         LocalDate dateOfDay = getDateOfDate();
         int year = dateOfDay.getYear();
-        int yearFromP = birthDate.year;
+        int yearFromP = birthDate.getYear();
 
         int age = year - yearFromP;
-        if(dateOfDay.getMonthValue() < birthDate.month ||
-                ( dateOfDay.getDayOfMonth() == birthDate.month &&
-                        dateOfDay.getDayOfMonth() > birthDate.day)) {
+        if(isBirthdatePassed(dateOfDay, birthDate)) {
             --age;
         }
 
@@ -32,6 +36,7 @@ public class Person {
         return LocalDate.now();
     }
 
+    @Override
     public String toString() {
         return String.format("%s %s est né le %s", lastName, firstName, birthDate);
     }

@@ -1,14 +1,64 @@
 package ClassesAndObjects;
+import java.time.LocalDate;
 
 public class Date {
-    public int day;
-    public int month;
-    public int year;
+    private int day;
+    private int month;
+    private int year;
+
+    public int getDay() {
+        return day;
+    }
+    public void setDay(int day) {
+        if (day < 1 || day > daysInMonth(this.month == 0 ? 1 : this.month, this.year == 0 ? 2000 : this.year)) {
+            throw new RuntimeException();
+        }
+
+        this.day = day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        if(month < 1 || month > 12) {
+            throw new RuntimeException();
+        }
+
+        if(this.day != 0 && this.day > daysInMonth(month, year)) {
+            throw new RuntimeException();
+        }
+
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        if(year <= 1900 || year > 2025) {
+            throw new RuntimeException();
+        }
+
+        if(this.month != 0 && this.day != 0) {
+            if(this.day > daysInMonth(this.month, year)) {
+                throw new RuntimeException("Année impossible, à cette date...");
+            }
+        }
+
+        this.year = year;
+    }
 
     public Date(int day, int month, int year) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
+        setYear(year);
+        setMonth(month);
+        setDay(day);
+    }
+
+    public Date() {
+        this(LocalDate.now().getDayOfMonth(), LocalDate.now().getMonthValue(), LocalDate.now().getYear());
     }
 
     public static boolean isBisextile(int year) {
@@ -20,8 +70,8 @@ public class Date {
     public static int daysInMonth(int month, int year) {
         return switch (month) {
             case 2 -> isBisextile(year) ? 29 : 28;
-            case 4, 6, 9, 11 -> 31;
-            default -> 30;
+            case 4, 6, 9, 11 -> 30;
+            default -> 31;
         };
     }
     public void increment() {
@@ -39,16 +89,16 @@ public class Date {
     public int dayOfWeek() {
        int q = day;
        int m = month;
+        int y = year;
        if(m == 1) {
            m = 13;
-           --year;
+           --y;
        } else if (m == 2) {
            m = 14;
-           --year;
+           --y;
        }
-       int y = year;
-       int j = year / 100;
-       int k = year % 100;
+       int j = y / 100;
+       int k = y % 100;
 
         return (q + ( 13*(m + 1)) / 5 + k + (k/4) + (j/4) + 5*j) % 7;
     }
